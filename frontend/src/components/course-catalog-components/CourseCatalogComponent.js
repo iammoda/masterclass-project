@@ -7,7 +7,8 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Button } from 'reactstrap';
 
 import CourseItemComponent from './CourseItemComponent';
 
@@ -18,6 +19,8 @@ const CourseCatalogComponent = ({
   coursesInfoFromState: { courses },
   authInfoFromState: { userEmail },
 }) => {
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(-1);
+
   useEffect(() => {
     getAllCourses(userEmail);
   }, [getAllCourses]);
@@ -26,12 +29,27 @@ const CourseCatalogComponent = ({
 
   return (
     <Fragment>
-      <div>
-        {courses &&
-          courses.map((course) => (
-            <CourseItemComponent key={course.id} course={course} />
-          ))}
-      </div>
+      <Button onClick={() => setShowFavoritesOnly(showFavoritesOnly * -1)}>
+        {showFavoritesOnly === 1 ? 'Show all Courses' : 'Show Favorites'}
+      </Button>
+
+      {showFavoritesOnly === 1 ? (
+        <div>
+          {courses &&
+            courses
+              .filter((course) => course.favorite === true)
+              .map((course) => (
+                <CourseItemComponent key={course.id} course={course} />
+              ))}
+        </div>
+      ) : (
+        <div>
+          {courses &&
+            courses.map((course) => (
+              <CourseItemComponent key={course.id} course={course} />
+            ))}
+        </div>
+      )}
     </Fragment>
   );
 };
