@@ -8,7 +8,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { Button } from 'reactstrap';
+import { Button, Row } from 'reactstrap';
 
 import CourseItemComponent from './CourseItemComponent';
 
@@ -30,26 +30,30 @@ const CourseCatalogComponent = ({
 
   return (
     <Fragment>
-      <Button onClick={() => setShowFavoritesOnly(showFavoritesOnly * -1)}>
+      <Button
+        className='mt-4 mb-4'
+        color='primary'
+        onClick={() => setShowFavoritesOnly(showFavoritesOnly * -1)}
+      >
         {showFavoritesOnly === 1 ? 'Show all Courses' : 'Show Favorites'}
       </Button>
 
       {showFavoritesOnly === 1 ? (
-        <div>
+        <Row>
           {courses &&
             courses
               .filter((course) => course.favorite === true)
               .map((course) => (
                 <CourseItemComponent key={course.id} course={course} />
               ))}
-        </div>
+        </Row>
       ) : (
-        <div>
+        <Row>
           {courses &&
             courses.map((course) => (
               <CourseItemComponent key={course.id} course={course} />
             ))}
-        </div>
+        </Row>
       )}
       {/* <Button onClick={() => setPageNum(pageNum - 1)}>Previous Page</Button>
       <Button onClick={() => setPageNum(pageNum + 1)}>Next Page</Button> */}

@@ -4,6 +4,7 @@
 
 import React from 'react';
 import { Container, Col, Row, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Card, CardBody } from 'reactstrap';
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { loginUser } from '../../actions/authActions';
@@ -25,56 +26,53 @@ export const LandingComponent = ({ loginUser }) => {
     <Container>
       <Row>
         <Col align='center'>
-          <h1>Hello</h1>
+          <h1>Login to your Account</h1>
         </Col>
       </Row>
-      <Row>
-        <Col>
-          <Form>
-            <FormGroup>
-              <Label for='exampleEmail'>Email</Label>
-              <Input
-                type='email'
-                name='email'
-                id='exampleEmail'
-                placeholder='with a placeholder'
-                value={formData.email}
-                onChange={(e) => onChange(e)}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for='examplePassword'>Password</Label>
-              <Input
-                type='password'
-                name='password'
-                id='examplePassword'
-                placeholder='password placeholder'
-                value={formData.password}
-                onChange={(e) => onChange(e)}
-              />
-            </FormGroup>
-          </Form>
-          <Button
-            block
-            color='success'
-            size='md'
-            onClick={(e) => loginUser(formData.email)}
-          >
-            <Link to='/'>
-              <h3 class='text-white'>Login</h3>
-            </Link>
-          </Button>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Button block color='primary' size='md'>
-            <Link to='/'>
-              <h3 class='text-white'>Register</h3>
-            </Link>
-          </Button>
-        </Col>
-      </Row>
+      <Card>
+        <CardBody>
+          <Row>
+            <Col>
+              <Form>
+                <FormGroup>
+                  <Label for='exampleEmail'>Email</Label>
+                  <Input
+                    type='email'
+                    name='email'
+                    id='exampleEmail'
+                    placeholder='hello@gmail.com'
+                    value={formData.email}
+                    onChange={(e) => onChange(e)}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label for='examplePassword'>Password</Label>
+                  <Input
+                    type='password'
+                    name='password'
+                    id='examplePassword'
+                    placeholder='Enter your Password'
+                    value={formData.password}
+                    onChange={(e) => onChange(e)}
+                  />
+                </FormGroup>
+              </Form>
+
+              <Button
+                color='success'
+                onClick={(e) => loginUser(formData.email)}
+                className='mt-2 mr-2'
+              >
+                Login
+              </Button>
+              <br></br>
+              <Button color='primary' className='mt-2 ml-2'>
+                Register
+              </Button>
+            </Col>
+          </Row>
+        </CardBody>
+      </Card>
     </Container>
   );
 };

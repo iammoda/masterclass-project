@@ -17,6 +17,7 @@ import {
   CardTitle,
   CardSubtitle,
   Button,
+  Col,
 } from 'reactstrap';
 
 const CourseItemComponent = ({
@@ -25,11 +26,11 @@ const CourseItemComponent = ({
   authInfoFromState: { userEmail },
 }) => {
   return (
-    <div>
+    <Col xl='4' lg='4' md='4' sm='4' className='mb-4'>
       <Card>
-        <CardBody>
+        <CardBody align='center'>
           <div>
-            <img top width='5%' src={instructor_image_url} />
+            <img top width='100px' src={instructor_image_url} />
           </div>
           <CardTitle tag='h5'>{instructorName}</CardTitle>
           <CardSubtitle tag='h6' className='mb-2 text-muted'>
@@ -41,7 +42,7 @@ const CourseItemComponent = ({
           {favorite === true ? <div> Item Favorited</div> : null}
         </CardBody>
       </Card>
-    </div>
+    </Col>
   );
 };
 
