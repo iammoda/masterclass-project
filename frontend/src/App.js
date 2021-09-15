@@ -7,15 +7,23 @@ import store from './store';
 //Components
 import LandingComponent from './components/layout-components/LandingComponent';
 import NavbarComponent from './components/layout-components/NavbarComponent';
+import CourseCatalogComponent from './components/course-catalog-components/CourseCatalogComponent';
 
 function App() {
   return (
-    <Router>
-      <Fragment>
-        <NavbarComponent />
-        <Route exact path='/' component={LandingComponent} />
-      </Fragment>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Fragment>
+          <NavbarComponent />
+          <Route exact path='/' component={LandingComponent} />
+          <Container>
+            <Switch>
+              <Route exact path='/courses' component={CourseCatalogComponent} />
+            </Switch>
+          </Container>
+        </Fragment>
+      </Router>
+    </Provider>
   );
 }
 

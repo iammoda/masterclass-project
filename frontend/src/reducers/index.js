@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-import courseReducer from './courseReducer';
+import coursesReducer from './coursesReducer';
 
-export default combineReducers({ courseReducer });
+export default combineReducers({ coursesReducer });

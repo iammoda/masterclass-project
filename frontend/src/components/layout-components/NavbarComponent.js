@@ -28,7 +28,7 @@ export const NavbarComponent = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className='mr-auto' navbar>
             <NavItem>
-              <Link to='/components/'>Course Catalog</Link>
+              <NavLink href='/courses'>Course Catalog</NavLink>
             </NavItem>
 
             <UncontrolledDropdown nav inNavbar>
