@@ -17,9 +17,10 @@ function App() {
       <Router>
         <Fragment>
           <NavbarComponent />
-          <Route exact path='/' component={LandingComponent} />
+
           <Container>
             <Switch>
+              <Route exact path='/' component={LandingComponent} />
               <Route exact path='/courses' component={CourseCatalogComponent} />
             </Switch>
           </Container>

@@ -6,7 +6,8 @@ import { ToastContainer, toast } from 'react-toastify';
 
 //GET request to get all courses
 //potentially change to be able to take any email in (auth)
-export const getAllCourses = () => async (dispatch) => {
+export const getAllCourses = (userEmail) => async (dispatch) => {
+  userEmail = 'gounder.mo@gmail.com';
   try {
     const config = {
       headers: {
@@ -14,7 +15,7 @@ export const getAllCourses = () => async (dispatch) => {
       },
     };
     const res = await axios.get(
-      'https://mc-dev-5.herokuapp.com/jsonapi/v1/courses?email=gounder.mo@gmail.com',
+      `https://mc-dev-5.herokuapp.com/jsonapi/v1/courses?email=${userEmail}`,
       config
     );
 
@@ -24,24 +25,22 @@ export const getAllCourses = () => async (dispatch) => {
       type: GET_ALL_COURSES,
       payload: res.data,
     });
-  } catch (err) {}
+  } catch (err) {
+    toast.error('Unable to get Courses');
+  }
 };
 
-export const addToFavs = (courseId) => async (dispatch) => {
+export const addToFavs = (email, courseId) => async (dispatch) => {
   try {
     const config = {
       headers: {
         'Content-Type': 'application/json',
       },
     };
-    const data = {
-      email: 'gounder.mo@gmail.com',
-      course_id: courseId,
-    };
+
     const res = await axios.post(
-      'https://mc-dev-5.herokuapp.com/jsonapi/v1/favorite',
-      config,
-      data
+      `https://mc-dev-5.herokuapp.com/jsonapi/v1/favorite?email=${email}&course_id=${courseId}`,
+      config
     );
 
     console.log('addedtoFavs', res);

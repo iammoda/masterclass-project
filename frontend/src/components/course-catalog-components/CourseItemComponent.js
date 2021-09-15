@@ -21,20 +21,24 @@ import {
 
 const CourseItemComponent = ({
   addToFavs,
-  course: { title, instructorName, instructor_image_url, id },
+  course: { title, instructorName, instructor_image_url, id, favorite },
+  authInfoFromState: { userEmail },
 }) => {
   return (
     <div>
       <Card>
-        <CardImg top width='5%' src={instructor_image_url} />
         <CardBody>
+          <div>
+            <img top width='5%' src={instructor_image_url} />
+          </div>
           <CardTitle tag='h5'>{instructorName}</CardTitle>
           <CardSubtitle tag='h6' className='mb-2 text-muted'>
-            Teaches the {title}
+            {title}
           </CardSubtitle>
-          <Button onClick={() => addToFavs(id)} color='success'>
+          <Button onClick={() => addToFavs(userEmail, id)} color='success'>
             Add To Favs
           </Button>
+          {favorite === true ? <div> Item Favorited</div> : null}
         </CardBody>
       </Card>
     </div>
@@ -44,6 +48,11 @@ const CourseItemComponent = ({
 CourseItemComponent.propTypes = {
   course: PropTypes.object.isRequired,
   addToFavs: PropTypes.func.isRequired,
+  authInfoFromState: PropTypes.object.isRequired,
 };
 
-export default connect(null, { addToFavs })(CourseItemComponent);
+const mapStateToProps = (state) => ({
+  authInfoFromState: state.authReducer,
+});
+
+export default connect(mapStateToProps, { addToFavs })(CourseItemComponent);

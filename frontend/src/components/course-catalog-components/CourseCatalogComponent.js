@@ -16,9 +16,10 @@ import { getAllCourses } from '../../actions/coursesActions';
 const CourseCatalogComponent = ({
   getAllCourses,
   coursesInfoFromState: { courses },
+  authInfoFromState: { userEmail },
 }) => {
   useEffect(() => {
-    getAllCourses();
+    getAllCourses(userEmail);
   }, [getAllCourses]);
 
   console.log(courses);
@@ -42,6 +43,7 @@ CourseCatalogComponent.propTypes = {
 
 const mapStateToProps = (state) => ({
   coursesInfoFromState: state.coursesReducer,
+  authInfoFromState: state.authReducer,
 });
 
 export default connect(mapStateToProps, { getAllCourses })(

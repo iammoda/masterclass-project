@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
 import coursesReducer from './coursesReducer';
-import alertReducer from './alertReducer';
+import authReducer from './authReducer';
 
-export default combineReducers({ coursesReducer });
+export default combineReducers({ coursesReducer, authReducer });
