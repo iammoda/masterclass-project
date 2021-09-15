@@ -18,11 +18,12 @@ import {
   CardSubtitle,
   Button,
   Col,
+  Badge,
 } from 'reactstrap';
 
 const CourseItemComponent = ({
   addToFavs,
-  course: { title, instructorName, instructor_image_url, id, favorite },
+  course: { title, instructor_name, instructor_image_url, id, favorite },
   authInfoFromState: { userEmail },
 }) => {
   return (
@@ -32,14 +33,16 @@ const CourseItemComponent = ({
           <div>
             <img top width='100px' src={instructor_image_url} />
           </div>
-          <CardTitle tag='h5'>{instructorName}</CardTitle>
+          <CardTitle tag='h5'>{instructor_name}</CardTitle>
           <CardSubtitle tag='h6' className='mb-2 text-muted'>
             {title}
           </CardSubtitle>
           <Button onClick={() => addToFavs(userEmail, id)} color='success'>
             Add To Favs
           </Button>
-          {favorite === true ? <div> Item Favorited</div> : null}
+          {favorite === true ? (
+            <div className='text-primary'> Instructor Favorited</div>
+          ) : null}
         </CardBody>
       </Card>
     </Col>
