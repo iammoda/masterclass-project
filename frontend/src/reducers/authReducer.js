@@ -1,7 +1,8 @@
-import { LOGIN_SUCCESS } from '../actions/actionTypes';
+import { LOGIN_SUCCESS, LOGOUT } from '../actions/actionTypes';
 
 const initialState = {
   userEmail: 'gounder.mo@gmail.com',
+  isAuthenticated: false,
 };
 
 export default function (state = initialState, action) {
@@ -11,6 +12,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         userEmail: payload,
+        isAuthenticated: true,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        isAuthenticated: false,
       };
     default:
       return state;

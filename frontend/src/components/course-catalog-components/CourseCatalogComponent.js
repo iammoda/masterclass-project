@@ -19,6 +19,7 @@ const CourseCatalogComponent = ({
   coursesInfoFromState: { courses },
   authInfoFromState: { userEmail },
 }) => {
+  // const [pageNum, setPageNum] = useState(1);
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(-1);
 
   useEffect(() => {
@@ -50,6 +51,8 @@ const CourseCatalogComponent = ({
             ))}
         </div>
       )}
+      {/* <Button onClick={() => setPageNum(pageNum - 1)}>Previous Page</Button>
+      <Button onClick={() => setPageNum(pageNum + 1)}>Next Page</Button> */}
     </Fragment>
   );
 };

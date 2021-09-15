@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS } from './actionTypes';
+import { LOGIN_SUCCESS, LOGOUT } from './actionTypes';
 
 export const loginUser = (formdata) => async (dispatch) => {
   try {
@@ -7,4 +7,8 @@ export const loginUser = (formdata) => async (dispatch) => {
       payload: formdata,
     });
   } catch (err) {}
+};
+
+export const logout = () => (dispatch) => {
+  dispatch({ type: LOGOUT });
 };
