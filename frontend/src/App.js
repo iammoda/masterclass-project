@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 //Redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -22,6 +24,7 @@ function App() {
             </Switch>
           </Container>
         </Fragment>
+        <ToastContainer />
       </Router>
     </Provider>
   );

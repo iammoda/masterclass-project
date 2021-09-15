@@ -8,10 +8,11 @@
 
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { addToFavs } from '../../actions/coursesActions';
+import { connect } from 'react-redux';
 import {
   Card,
   CardImg,
-  CardText,
   CardBody,
   CardTitle,
   CardSubtitle,
@@ -19,20 +20,21 @@ import {
 } from 'reactstrap';
 
 const CourseItemComponent = ({
-  course: { title, instructorName, instructor_image_url, favorite, id },
+  addToFavs,
+  course: { title, instructorName, instructor_image_url, id },
 }) => {
-  console.log(instructor_image_url);
   return (
     <div>
       <Card>
-        <CardImg top width='50%' src={instructor_image_url} />
+        <CardImg top width='5%' src={instructor_image_url} />
         <CardBody>
           <CardTitle tag='h5'>{instructorName}</CardTitle>
           <CardSubtitle tag='h6' className='mb-2 text-muted'>
             Teaches the {title}
           </CardSubtitle>
-
-          {/* <Button>Button</Button> */}
+          <Button onClick={() => addToFavs(id)} color='success'>
+            Add To Favs
+          </Button>
         </CardBody>
       </Card>
     </div>
@@ -41,6 +43,7 @@ const CourseItemComponent = ({
 
 CourseItemComponent.propTypes = {
   course: PropTypes.object.isRequired,
+  addToFavs: PropTypes.func.isRequired,
 };
 
-export default CourseItemComponent;
+export default connect(null, { addToFavs })(CourseItemComponent);
